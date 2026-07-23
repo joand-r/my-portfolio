@@ -35,6 +35,41 @@ export const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) 
   </svg>
 );
 
+/* AI TOOL ICONS */
+
+// Claude (Anthropic Star Emblem)
+export const ClaudeIcon = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2L14.5 8.5L21 11L14.5 13.5L12 20L9.5 13.5L3 11L9.5 8.5L12 2Z" />
+  </svg>
+);
+
+// OpenAI (ChatGPT Spiral Emblem)
+export const OpenAIIcon = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 3a9 9 0 0 1 6.36 15.36L12 12" />
+    <path d="M12 12L5.64 5.64" />
+    <path d="M12 12v9" />
+  </svg>
+);
+
+// Google Antigravity (Sparkle Diamond Emblem)
+export const AntigravityIcon = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9 12 2" />
+  </svg>
+);
+
+// OpenCode (AI Code Terminal Bot Emblem)
+export const OpenCodeIcon = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="3" />
+    <path d="M7 9l3 3-3 3" />
+    <path d="M13 15h4" />
+  </svg>
+);
+
 /* ELEGANT LINE DIVIDERS (NO STARS) */
 
 export const GoldLineDividerCenter = ({ className = "my-6" }: { className?: string }) => (

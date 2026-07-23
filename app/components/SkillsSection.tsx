@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { GoldLineDividerCenter, GoldLineDividerBottom } from "./Icons";
+import {
+  GoldLineDividerCenter,
+  GoldLineDividerBottom,
+  ClaudeIcon,
+  OpenAIIcon,
+  AntigravityIcon,
+  OpenCodeIcon,
+} from "./Icons";
 import {
   SiJavascript,
   SiTypescript,
@@ -32,13 +39,13 @@ import {
 } from "react-icons/si";
 import { FaAws, FaCss3Alt } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
-import { Code2, Server, Database, Cloud, Cpu, Compass } from "lucide-react";
+import { Code2, Server, Database, Cloud, Cpu, Compass, BrainCircuit } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function SkillsSection() {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<
-    "languages" | "frameworks" | "databases" | "cloud" | "methodology" | "servers"
+    "languages" | "frameworks" | "databases" | "cloud" | "ai" | "methodology" | "servers"
   >("languages");
 
   const categories = [
@@ -46,6 +53,7 @@ export default function SkillsSection() {
     { id: "frameworks", label: t("skills.cat_frameworks"), icon: <Cpu className="w-4 h-4" /> },
     { id: "databases", label: t("skills.cat_databases"), icon: <Database className="w-4 h-4" /> },
     { id: "cloud", label: t("skills.cat_cloud"), icon: <Cloud className="w-4 h-4" /> },
+    { id: "ai", label: "Herramientas IA", icon: <BrainCircuit className="w-4 h-4 text-purple-400" /> },
     { id: "methodology", label: t("skills.cat_methodology"), icon: <Compass className="w-4 h-4" /> },
     { id: "servers", label: t("skills.cat_servers"), icon: <Server className="w-4 h-4" /> },
   ];
@@ -81,14 +89,20 @@ export default function SkillsSection() {
     { name: "Google Cloud", cat: "cloud", icon: <SiGooglecloud className="w-7 h-7 text-[#4285F4]" />, backGrad: "from-blue-400 to-indigo-600" },
     { name: "Docker", cat: "cloud", icon: <SiDocker className="w-7 h-7 text-[#2496ED]" />, backGrad: "from-sky-500 to-blue-700" },
 
-    // 5. Metodologías & Arquitectura
+    // 5. Inteligencia Artificial (AI Tools - Requested by User)
+    { name: "Claude 3.7 (Anthropic)", cat: "ai", icon: <ClaudeIcon className="w-7 h-7 text-amber-500" />, backGrad: "from-amber-600 to-orange-800" },
+    { name: "ChatGPT (OpenAI)", cat: "ai", icon: <OpenAIIcon className="w-7 h-7 text-emerald-400" />, backGrad: "from-emerald-600 to-teal-800" },
+    { name: "Google Antigravity", cat: "ai", icon: <AntigravityIcon className="w-7 h-7 text-[#D4AF37]" />, backGrad: "from-yellow-500 to-amber-700" },
+    { name: "OpenCode AI", cat: "ai", icon: <OpenCodeIcon className="w-7 h-7 text-sky-400" />, backGrad: "from-sky-600 to-blue-800" },
+
+    // 6. Metodologías & Arquitectura
     { name: "Jira Software", cat: "methodology", icon: <SiJira className="w-7 h-7 text-[#0052CC]" />, backGrad: "from-blue-600 to-indigo-800" },
     { name: "Draw.io", cat: "methodology", icon: <SiDiagramsdotnet className="w-7 h-7 text-[#F08705]" />, backGrad: "from-orange-500 to-amber-700" },
     { name: "Software Architecture", cat: "methodology", icon: <Compass className="w-7 h-7 text-[#D4AF37]" />, backGrad: "from-yellow-600 to-amber-800" },
     { name: "Git", cat: "methodology", icon: <SiGit className="w-7 h-7 text-[#F05032]" />, backGrad: "from-orange-600 to-red-700" },
     { name: "GitHub", cat: "methodology", icon: <SiGithub className="w-7 h-7 theme-text" />, backGrad: "from-slate-700 to-zinc-900" },
 
-    // 6. Servidores & Redes
+    // 7. Servidores & Redes
     { name: "Linux (Ubuntu/RHEL)", cat: "servers", icon: <SiLinux className="w-7 h-7 text-[#FCC624]" />, backGrad: "from-amber-500 to-yellow-600" },
     { name: "Cisco IOS", cat: "servers", icon: <SiCisco className="w-7 h-7 text-[#1BA0D7]" />, backGrad: "from-cyan-600 to-blue-800" },
   ];
@@ -114,7 +128,7 @@ export default function SkillsSection() {
           </p>
         </RevealOnScroll>
 
-        {/* Category Switcher Tabs */}
+        {/* Category Switcher Tabs (Added Herramientas IA) */}
         <RevealOnScroll delay={250} className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border">
           {categories.map((cat) => (
             <button
