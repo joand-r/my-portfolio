@@ -2,14 +2,7 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import {
-  GoldLineDividerCenter,
-  GoldLineDividerBottom,
-  ClaudeIcon,
-  OpenAIIcon,
-  AntigravityIcon,
-  OpenCodeIcon,
-} from "./Icons";
+import { GoldLineDividerCenter, GoldLineDividerBottom } from "./Icons";
 import {
   SiJavascript,
   SiTypescript,
@@ -37,7 +30,8 @@ import {
   SiLinux,
   SiCisco,
 } from "react-icons/si";
-import { FaAws, FaCss3Alt } from "react-icons/fa6";
+import { FaAws, FaCss3Alt, FaBrain } from "react-icons/fa6";
+import { TbBrandOpenai, TbSparkles, TbTerminal2 } from "react-icons/tb";
 import { VscAzure } from "react-icons/vsc";
 import { Code2, Server, Database, Cloud, Cpu, Compass, BrainCircuit } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
@@ -53,7 +47,7 @@ export default function SkillsSection() {
     { id: "frameworks", label: t("skills.cat_frameworks"), icon: <Cpu className="w-4 h-4" /> },
     { id: "databases", label: t("skills.cat_databases"), icon: <Database className="w-4 h-4" /> },
     { id: "cloud", label: t("skills.cat_cloud"), icon: <Cloud className="w-4 h-4" /> },
-    { id: "ai", label: "Herramientas IA", icon: <BrainCircuit className="w-4 h-4 text-purple-400" /> },
+    { id: "ai", label: "Herramientas IA", icon: <BrainCircuit className="w-4 h-4 theme-text" /> },
     { id: "methodology", label: t("skills.cat_methodology"), icon: <Compass className="w-4 h-4" /> },
     { id: "servers", label: t("skills.cat_servers"), icon: <Server className="w-4 h-4" /> },
   ];
@@ -89,11 +83,11 @@ export default function SkillsSection() {
     { name: "Google Cloud", cat: "cloud", icon: <SiGooglecloud className="w-7 h-7 text-[#4285F4]" />, backGrad: "from-blue-400 to-indigo-600" },
     { name: "Docker", cat: "cloud", icon: <SiDocker className="w-7 h-7 text-[#2496ED]" />, backGrad: "from-sky-500 to-blue-700" },
 
-    // 5. Inteligencia Artificial (AI Tools - Requested by User)
-    { name: "Claude 3.7 (Anthropic)", cat: "ai", icon: <ClaudeIcon className="w-7 h-7 text-amber-500" />, backGrad: "from-amber-600 to-orange-800" },
-    { name: "ChatGPT (OpenAI)", cat: "ai", icon: <OpenAIIcon className="w-7 h-7 text-emerald-400" />, backGrad: "from-emerald-600 to-teal-800" },
-    { name: "Google Antigravity", cat: "ai", icon: <AntigravityIcon className="w-7 h-7 text-[#D4AF37]" />, backGrad: "from-yellow-500 to-amber-700" },
-    { name: "OpenCode AI", cat: "ai", icon: <OpenCodeIcon className="w-7 h-7 text-sky-400" />, backGrad: "from-sky-600 to-blue-800" },
+    // 5. Inteligencia Artificial (AI Tools - Library Icons: FaBrain, TbBrandOpenai, TbSparkles, TbTerminal2)
+    { name: "Claude 3.7", cat: "ai", icon: <FaBrain className="w-7 h-7 text-amber-500" />, backGrad: "from-amber-600 to-orange-800" },
+    { name: "ChatGPT (OpenAI)", cat: "ai", icon: <TbBrandOpenai className="w-7 h-7 text-emerald-400" />, backGrad: "from-emerald-600 to-teal-800" },
+    { name: "Google Antigravity", cat: "ai", icon: <TbSparkles className="w-7 h-7 text-[#D4AF37]" />, backGrad: "from-yellow-500 to-amber-700" },
+    { name: "OpenCode AI", cat: "ai", icon: <TbTerminal2 className="w-7 h-7 text-sky-400" />, backGrad: "from-sky-600 to-blue-800" },
 
     // 6. Metodologías & Arquitectura
     { name: "Jira Software", cat: "methodology", icon: <SiJira className="w-7 h-7 text-[#0052CC]" />, backGrad: "from-blue-600 to-indigo-800" },
@@ -128,7 +122,7 @@ export default function SkillsSection() {
           </p>
         </RevealOnScroll>
 
-        {/* Category Switcher Tabs (Added Herramientas IA) */}
+        {/* Category Switcher Tabs (Adaptive theme-text icon for Herramientas IA) */}
         <RevealOnScroll delay={250} className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border">
           {categories.map((cat) => (
             <button
@@ -146,7 +140,7 @@ export default function SkillsSection() {
           ))}
         </RevealOnScroll>
 
-        {/* Pure Icon 3D Squircle Grid with Staggered Scroll Reveal */}
+        {/* Pure Icon 3D Squircle Grid */}
         <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
           {filtered.map((item, idx) => (
             <RevealOnScroll key={idx} delay={idx * 60}>
