@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { GoldLineDividerCenter, GoldLineDividerBottom } from "./Icons";
+import {
+  GoldLineDividerCenter,
+  GoldLineDividerBottom,
+} from "./Icons";
 import {
   SiJavascript,
   SiTypescript,
@@ -83,7 +86,7 @@ export default function SkillsSection() {
     { name: "Google Cloud", cat: "cloud", icon: <SiGooglecloud className="w-7 h-7 text-[#4285F4]" />, backGrad: "from-blue-400 to-indigo-600" },
     { name: "Docker", cat: "cloud", icon: <SiDocker className="w-7 h-7 text-[#2496ED]" />, backGrad: "from-sky-500 to-blue-700" },
 
-    // 5. Inteligencia Artificial (AI Tools - Library Icons: FaBrain, TbBrandOpenai, TbSparkles, TbTerminal2)
+    // 5. Inteligencia Artificial (AI Tools - Official Library Icons)
     { name: "Claude 3.7", cat: "ai", icon: <FaBrain className="w-7 h-7 text-amber-500" />, backGrad: "from-amber-600 to-orange-800" },
     { name: "ChatGPT (OpenAI)", cat: "ai", icon: <TbBrandOpenai className="w-7 h-7 text-emerald-400" />, backGrad: "from-emerald-600 to-teal-800" },
     { name: "Google Antigravity", cat: "ai", icon: <TbSparkles className="w-7 h-7 text-[#D4AF37]" />, backGrad: "from-yellow-500 to-amber-700" },
@@ -112,17 +115,17 @@ export default function SkillsSection() {
           <GoldLineDividerCenter className="my-0" />
         </RevealOnScroll>
 
-        {/* Section Header */}
+        {/* Section Header (Unified Velada Gold Gradient & Cinzel Font) */}
         <RevealOnScroll delay={150} className="flex flex-col items-center text-center space-y-2 mb-10">
-          <h2 className="text-3xl md:text-5xl font-extrabold theme-text tracking-[0.15em] font-sans uppercase">
+          <h2 className="text-3xl md:text-5xl font-extrabold font-cinzel velada-gold-text tracking-[0.15em] uppercase">
             {t("skills.title")}
           </h2>
-          <p className="font-mono text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase max-w-xl">
+          <p className="font-cinzel text-xs font-bold tracking-[0.25em] text-[#D4AF37] uppercase max-w-xl">
             {t("skills.subtitle")}
           </p>
         </RevealOnScroll>
 
-        {/* Category Switcher Tabs (Adaptive theme-text icon for Herramientas IA) */}
+        {/* Category Switcher Tabs */}
         <RevealOnScroll delay={250} className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border">
           {categories.map((cat) => (
             <button
