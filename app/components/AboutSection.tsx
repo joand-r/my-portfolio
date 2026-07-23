@@ -3,7 +3,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { GoldLineDividerCenter, GoldLineDividerBottom } from "./Icons";
-import { GraduationCap, MapPin, Languages, Palette } from "lucide-react";
+import { GraduationCap, MapPin, Languages, Palette, Code2 } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function AboutSection() {
@@ -19,12 +19,20 @@ export default function AboutSection() {
       delay: 100,
     },
     {
+      badge: "DESARROLLO",
+      title: "DESARROLLADOR FULL STACK",
+      icon: <Code2 className="w-6 h-6 text-cyan-400" />,
+      badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+      iconBg: "bg-cyan-500/10 border-cyan-500/40 text-cyan-400",
+      delay: 200,
+    },
+    {
       badge: "UBICACIÓN",
       title: "SANTA CRUZ, BOLIVIA",
       icon: <MapPin className="w-6 h-6 text-emerald-400" />,
       badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
       iconBg: "bg-emerald-500/10 border-emerald-500/40 text-emerald-400",
-      delay: 250,
+      delay: 300,
     },
     {
       badge: "IDIOMA",
@@ -40,7 +48,7 @@ export default function AboutSection() {
       icon: <Palette className="w-6 h-6 text-purple-400" />,
       badgeColor: "bg-purple-500/10 text-purple-400 border-purple-500/30",
       iconBg: "bg-purple-500/10 border-purple-500/40 text-purple-400",
-      delay: 550,
+      delay: 500,
     },
   ];
 
@@ -60,13 +68,13 @@ export default function AboutSection() {
           </h2>
         </RevealOnScroll>
 
-        {/* High-End Aligned Pantheon Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* High-End Aligned Pantheon 5-Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {aboutItems.map((item, idx) => (
             <RevealOnScroll key={idx} delay={item.delay}>
-              <div className="infolavelada-card corner-brackets-top corner-brackets-bottom card-spotlight p-6 flex flex-col justify-between items-center text-center space-y-5 h-full min-h-[220px] shadow-xl group">
+              <div className="infolavelada-card corner-brackets-top corner-brackets-bottom card-spotlight p-5 flex flex-col justify-between items-center text-center space-y-4 h-full min-h-[220px] shadow-xl group">
                 {/* Top Badge */}
-                <span className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-[0.2em] uppercase border shadow-sm ${item.badgeColor}`}>
+                <span className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-[0.18em] uppercase border shadow-sm ${item.badgeColor}`}>
                   {item.badge}
                 </span>
 
@@ -77,7 +85,7 @@ export default function AboutSection() {
 
                 {/* Bottom Title */}
                 <div className="h-12 flex items-center justify-center">
-                  <h3 className="text-sm sm:text-base font-extrabold font-cinzel theme-text-title tracking-[0.1em] uppercase group-hover:text-[#D4AF37] transition-colors leading-tight">
+                  <h3 className="text-xs sm:text-sm font-extrabold font-cinzel theme-text-title tracking-[0.08em] uppercase group-hover:text-[#D4AF37] transition-colors leading-snug">
                     {item.title}
                   </h3>
                 </div>
