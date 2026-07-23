@@ -5,6 +5,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { GoldLineDividerCenter, GoldLineDividerBottom } from "./Icons";
 import { ArrowRight, Download } from "lucide-react";
 import Image from "next/image";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -19,16 +20,16 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pl-4 lg:pl-24">
         
         {/* Center Line Emblem Above Title */}
-        <div className="max-w-xs mx-auto mb-6 animate-stack">
+        <RevealOnScroll delay={100} className="max-w-xs mx-auto mb-6">
           <GoldLineDividerCenter className="my-0" />
-        </div>
+        </RevealOnScroll>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Clean Scannable Hero Typography */}
           <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
             
-            <div className="space-y-2 animate-stack delay-100">
+            <RevealOnScroll delay={200} className="space-y-2">
               <p className="theme-text-muted font-cinzel text-xs tracking-[0.3em] uppercase">
                 {t("hero.greeting")}
               </p>
@@ -40,10 +41,10 @@ export default function HeroSection() {
               <h2 className="text-sm sm:text-base font-cinzel font-bold text-[#D4AF37] tracking-[0.2em] uppercase pt-1">
                 INGENIERO EN SISTEMAS
               </h2>
-            </div>
+            </RevealOnScroll>
 
             {/* Action CTA Buttons */}
-            <div className="flex flex-wrap gap-3 pt-4 animate-stack delay-300">
+            <RevealOnScroll delay={350} className="flex flex-wrap gap-3 pt-4">
               <a
                 href="#projects"
                 className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-[#050811] font-cinzel font-bold text-xs tracking-widest uppercase shadow-md hover:scale-105 transition-all flex items-center gap-2 cursor-pointer"
@@ -66,43 +67,47 @@ export default function HeroSection() {
                 <Download className="w-4 h-4 text-[#D4AF37]" />
                 <span>{t("hero.btn_cv")}</span>
               </a>
-            </div>
+            </RevealOnScroll>
 
           </div>
 
-          {/* Right Column: Clean PNG Photo Frame Only (No redundant text or buttons) */}
-          <div className="lg:col-span-5 flex justify-center animate-stack delay-300">
-            <div className="infolavelada-card corner-brackets-top corner-brackets-bottom card-spotlight p-5 w-full max-w-sm flex items-center justify-center shadow-2xl">
-              
-              {/* PNG Photo Container */}
-              <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-xl overflow-hidden border border-[#D4AF37]/30 theme-bg flex items-center justify-center relative shadow-inner">
-                {!imageError ? (
-                  <Image
-                    src="/images/profile.png"
-                    alt="Joan Daniel Robles"
-                    width={256}
-                    height={288}
-                    className="object-cover w-full h-full"
-                    onError={() => setImageError(true)}
-                    priority
-                  />
-                ) : (
-                  /* Clean Fallback Badge */
-                  <div className="flex flex-col items-center justify-center text-[#D4AF37] p-4 space-y-2">
-                    <span className="text-xl font-cinzel font-extrabold tracking-wider theme-text-title">JDR</span>
-                    <span className="text-xs font-cinzel font-bold tracking-wider theme-text">JOAN DANIEL ROBLES</span>
-                    <span className="text-[10px] font-mono theme-text-muted">INGENIERO EN SISTEMAS</span>
-                  </div>
-                )}
-              </div>
+          {/* Right Column: Clean PNG Photo Frame Only */}
+          <div className="lg:col-span-5 flex justify-center">
+            <RevealOnScroll delay={300} className="w-full max-w-sm flex justify-center">
+              <div className="infolavelada-card corner-brackets-top corner-brackets-bottom card-spotlight p-5 w-full flex items-center justify-center shadow-2xl">
+                
+                {/* PNG Photo Container */}
+                <div className="w-56 h-64 sm:w-64 sm:h-72 rounded-xl overflow-hidden border border-[#D4AF37]/30 theme-bg flex items-center justify-center relative shadow-inner">
+                  {!imageError ? (
+                    <Image
+                      src="/images/profile.png"
+                      alt="Joan Daniel Robles"
+                      width={256}
+                      height={288}
+                      className="object-cover w-full h-full"
+                      onError={() => setImageError(true)}
+                      priority
+                    />
+                  ) : (
+                    /* Clean Fallback Badge */
+                    <div className="flex flex-col items-center justify-center text-[#D4AF37] p-4 space-y-2">
+                      <span className="text-xl font-cinzel font-extrabold tracking-wider theme-text-title">JDR</span>
+                      <span className="text-xs font-cinzel font-bold tracking-wider theme-text">JOAN DANIEL ROBLES</span>
+                      <span className="text-[10px] font-mono theme-text-muted">INGENIERO EN SISTEMAS</span>
+                    </div>
+                  )}
+                </div>
 
-            </div>
+              </div>
+            </RevealOnScroll>
           </div>
 
         </div>
 
         {/* Bottom Line Divider */}
-        <GoldLineDividerBottom className="mt-14 mb-0 opacity-60" />
+        <RevealOnScroll delay={450}>
+          <GoldLineDividerBottom className="mt-14 mb-0 opacity-60" />
+        </RevealOnScroll>
 
       </div>
     </section>

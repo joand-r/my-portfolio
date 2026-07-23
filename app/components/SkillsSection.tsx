@@ -33,6 +33,7 @@ import {
 import { FaAws, FaCss3Alt } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
 import { Code2, Server, Database, Cloud, Cpu, Compass } from "lucide-react";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function SkillsSection() {
   const { t } = useLanguage();
@@ -99,22 +100,22 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pl-4 lg:pl-24">
         
         {/* La Velada Center Line Divider */}
-        <div className="max-w-xs mx-auto mb-4 animate-stack">
+        <RevealOnScroll delay={50} className="max-w-xs mx-auto mb-4">
           <GoldLineDividerCenter className="my-0" />
-        </div>
+        </RevealOnScroll>
 
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center space-y-2 mb-10 animate-stack delay-100">
+        <RevealOnScroll delay={150} className="flex flex-col items-center text-center space-y-2 mb-10">
           <h2 className="text-3xl md:text-5xl font-extrabold theme-text tracking-[0.15em] font-sans uppercase">
             {t("skills.title")}
           </h2>
           <p className="font-mono text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase max-w-xl">
             {t("skills.subtitle")}
           </p>
-        </div>
+        </RevealOnScroll>
 
         {/* Category Switcher Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border animate-stack delay-200">
+        <RevealOnScroll delay={250} className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -129,34 +130,37 @@ export default function SkillsSection() {
               <span>{cat.label}</span>
             </button>
           ))}
-        </div>
+        </RevealOnScroll>
 
-        {/* Pure Icon 3D Squircle Grid (High Contrast Tooltip in Light/Dark Mode) */}
+        {/* Pure Icon 3D Squircle Grid with Staggered Scroll Reveal */}
         <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
           {filtered.map((item, idx) => (
-            <div
-              key={idx}
-              className="squircle-card-wrapper cursor-pointer group animate-stack delay-300 relative"
-              title={item.name}
-            >
-              {/* Double Layer 3D Card */}
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
-                <div className={`squircle-card-back bg-gradient-to-br ${item.backGrad}`}></div>
-                <div className="squircle-card-front w-full h-full flex items-center justify-center">
-                  {item.icon}
+            <RevealOnScroll key={idx} delay={idx * 60}>
+              <div
+                className="squircle-card-wrapper cursor-pointer group relative"
+                title={item.name}
+              >
+                {/* Double Layer 3D Card */}
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
+                  <div className={`squircle-card-back bg-gradient-to-br ${item.backGrad}`}></div>
+                  <div className="squircle-card-front w-full h-full flex items-center justify-center">
+                    {item.icon}
+                  </div>
                 </div>
-              </div>
 
-              {/* High Contrast Tooltip Popup (Fixed for Light & Dark mode) */}
-              <span className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-slate-900 text-[#F3E5AB] text-[11px] font-mono font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-[#D4AF37]/60 shadow-2xl z-40">
-                {item.name}
-              </span>
-            </div>
+                {/* High Contrast Tooltip Popup */}
+                <span className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-slate-900 text-[#F3E5AB] text-[11px] font-mono font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-[#D4AF37]/60 shadow-2xl z-40">
+                  {item.name}
+                </span>
+              </div>
+            </RevealOnScroll>
           ))}
         </div>
 
         {/* Bottom La Velada Line Divider */}
-        <GoldLineDividerBottom className="mt-14 mb-0 opacity-70" />
+        <RevealOnScroll delay={500}>
+          <GoldLineDividerBottom className="mt-14 mb-0 opacity-70" />
+        </RevealOnScroll>
 
       </div>
     </section>
