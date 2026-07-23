@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
-import { GoldLineDividerBottom } from "./Icons";
 import { Sun, Moon, Globe, Menu, X, Home, User, Cpu, Briefcase, Mail } from "lucide-react";
 
 export default function Navbar() {
@@ -21,13 +20,13 @@ export default function Navbar() {
         setScrolled(false);
       }
 
-      // Track active section for floating pill indicator
+      // Track active section
       const sections = ["hero", "about", "skills", "projects", "contact"];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 200) {
+          if (rect.top <= 250 && rect.bottom >= 250) {
             setActiveSection(section);
             break;
           }
@@ -40,105 +39,99 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { id: "hero", name: t("nav.home"), href: "#hero", icon: <Home className="w-3.5 h-3.5" /> },
-    { id: "about", name: t("nav.about"), href: "#about", icon: <User className="w-3.5 h-3.5" /> },
-    { id: "skills", name: t("nav.skills"), href: "#skills", icon: <Cpu className="w-3.5 h-3.5" /> },
-    { id: "projects", name: t("nav.projects"), href: "#projects", icon: <Briefcase className="w-3.5 h-3.5" /> },
-    { id: "contact", name: t("nav.contact"), href: "#contact", icon: <Mail className="w-3.5 h-3.5" /> },
+    { id: "hero", name: t("nav.home"), href: "#hero", icon: <Home className="w-4 h-4" /> },
+    { id: "about", name: t("nav.about"), href: "#about", icon: <User className="w-4 h-4" /> },
+    { id: "skills", name: t("nav.skills"), href: "#skills", icon: <Cpu className="w-4 h-4" /> },
+    { id: "projects", name: t("nav.projects"), href: "#projects", icon: <Briefcase className="w-4 h-4" /> },
+    { id: "contact", name: t("nav.contact"), href: "#contact", icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none px-4 sm:px-6 pt-4">
       
-      {/* 1. INITIAL TOP HEADER (Scrolled === false) */}
+      {/* 1. TOP MODERN FLOATING PILL NAVBAR (scrolled === false) */}
       <div
-        className={`w-full pointer-events-auto transition-all duration-500 theme-bg-secondary shadow-md backdrop-blur-md ${
-          scrolled ? "opacity-0 -translate-y-full pointer-events-none absolute" : "opacity-100 translate-y-0"
+        className={`max-w-6xl mx-auto pointer-events-auto transition-all duration-500 rounded-full border border-[#D4AF37]/40 theme-bg-card shadow-2xl backdrop-blur-2xl px-6 py-3 flex items-center justify-between ${
+          scrolled ? "opacity-0 -translate-y-10 scale-95 pointer-events-none absolute inset-x-4" : "opacity-100 translate-y-0 scale-100"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          
-          {/* Brand Logo */}
-          <a href="#hero" className="flex items-center gap-2 group">
-            <span className="font-cinzel text-sm font-bold tracking-[0.25em] theme-text-title uppercase hover:text-[#D4AF37] transition-colors">
-             PORTAFOLIO
-            </span>
-          </a>
+        {/* Brand Logo with Gold Emblem Pill */}
+        <a href="#hero" className="flex items-center gap-2.5 group">
+          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#AA7C11] text-[#050811] font-cinzel font-black text-xs flex items-center justify-center shadow-md">
+            JDR
+          </span>
+          <span className="font-cinzel text-xs sm:text-sm font-extrabold tracking-[0.25em] theme-text-title uppercase group-hover:text-[#D4AF37] transition-colors">
+            PORTAFOLIO
+          </span>
+        </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-10">
-            {navLinks.map((link) => (
+        {/* Desktop Links Center */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
               <a
                 key={link.href}
                 href={link.href}
-                className="velada-nav-link"
+                className={`velada-nav-link text-xs font-bold font-cinzel tracking-[0.2em] transition-all ${
+                  isActive ? "active text-[#D4AF37]" : ""
+                }`}
               >
                 {link.name}
               </a>
-            ))}
-          </nav>
+            );
+          })}
+        </nav>
 
-          {/* Control Toggles */}
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              onClick={toggleLang}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full border theme-border-gold theme-bg-card text-xs font-cinzel font-bold theme-text hover:border-[#D4AF37] transition-all cursor-pointer"
-              title="Cambiar Idioma / Switch Language"
-            >
-              <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span className="tracking-widest">{lang === "es" ? "ES" : "EN"}</span>
-            </button>
+        {/* Control Toggles Right */}
+        <div className="hidden sm:flex items-center gap-2">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border theme-border-gold theme-bg text-xs font-mono font-bold theme-text hover:border-[#D4AF37] transition-all cursor-pointer shadow-sm"
+            title="Idioma"
+          >
+            <Globe className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>{lang.toUpperCase()}</span>
+          </button>
 
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full border theme-border-gold theme-bg-card text-xs font-cinzel font-bold theme-text hover:border-[#D4AF37] transition-all cursor-pointer"
-              title="Cambiar Tema / Switch Theme"
-            >
-              {theme === "dark" ? (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="tracking-widest">CLARO</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-indigo-500" />
-                  <span className="tracking-widest">OSCURO</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={toggleLang}
-              className="px-2 py-1 rounded border theme-border-gold text-xs font-cinzel font-bold text-[#D4AF37]"
-            >
-              {lang.toUpperCase()}
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 rounded border theme-border-gold theme-text"
-            >
-              {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 rounded text-[#D4AF37]"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border theme-border-gold theme-bg text-xs font-mono font-bold theme-text hover:border-[#D4AF37] transition-all cursor-pointer shadow-sm"
+            title="Tema"
+          >
+            {theme === "dark" ? (
+              <>
+                <Sun className="w-3.5 h-3.5 text-amber-400" />
+                <span>CLARO</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3.5 h-3.5 text-indigo-500" />
+                <span>OSCURO</span>
+              </>
+            )}
+          </button>
         </div>
 
-        {/* Clean Header Bottom Gold Line */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <GoldLineDividerBottom className="my-0 opacity-80" />
+        {/* Mobile Menu Toggle */}
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full border theme-border-gold theme-bg theme-text"
+          >
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-full text-[#D4AF37] theme-bg border theme-border-gold"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+
       </div>
 
-      {/* 2. FLOATING SCROLL GLASS PILL NAVBAR (Scrolled === true - Douglas Padilla Image Exact Match) */}
+      {/* 2. COMPACT FLOATING SCROLL PILL NAVBAR (scrolled === true) */}
       <div
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto transition-all duration-500 ease-out ${
           scrolled ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-90 pointer-events-none"
@@ -190,13 +183,13 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden theme-bg-secondary border-b theme-border-gold px-4 pt-3 pb-5 space-y-2 pointer-events-auto">
+        <div className="md:hidden mt-3 theme-bg-card border border-theme-border-gold rounded-2xl p-4 space-y-2 pointer-events-auto shadow-2xl backdrop-blur-xl">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-xs font-cinzel font-bold tracking-widest uppercase theme-text hover:text-[#D4AF37] transition-colors"
+              className="block px-4 py-2.5 rounded-xl text-xs font-cinzel font-bold tracking-widest uppercase theme-text hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-all"
             >
               {link.name}
             </a>

@@ -7,29 +7,29 @@
   --bg-secondary: #080C18;
   --text-title: #F4E6C3;
   --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
+  --text-muted: #CBD5E1;
   --gold-accent: #D4AF37;
   --gold-light: #F3E5AB;
-  --border-gold: rgba(212, 175, 55, 0.25);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --card-shadow: rgba(0, 0, 0, 0.7);
-  --grid-line: rgba(212, 175, 55, 0.04);
+  --border-gold: rgba(212, 175, 55, 0.35);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --card-shadow: rgba(0, 0, 0, 0.8);
+  --grid-line: rgba(212, 175, 55, 0.05);
 }
 
 html.light {
-  --bg-main: #F4F6F8;
+  --bg-main: #F8FAFC;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8FAFC;
+  --bg-card-hover: #F1F5F9;
   --bg-secondary: #FFFFFF;
   --text-title: #0F172A;
-  --text-main: #1E293B;
-  --text-muted: #475569;
-  --gold-accent: #997A15;
-  --gold-light: #B8860B;
-  --border-gold: rgba(153, 122, 21, 0.35);
-  --border-card: rgba(15, 23, 42, 0.12);
-  --card-shadow: rgba(15, 23, 42, 0.08);
-  --grid-line: rgba(153, 122, 21, 0.06);
+  --text-main: #020617;
+  --text-muted: #334155;
+  --gold-accent: #B8860B;
+  --gold-light: #997A15;
+  --border-gold: rgba(184, 134, 11, 0.45);
+  --border-card: rgba(15, 23, 42, 0.18);
+  --card-shadow: rgba(15, 23, 42, 0.12);
+  --grid-line: rgba(184, 134, 11, 0.08);
 }
 
 html {
@@ -42,11 +42,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Font Classes */
 .font-cinzel {
   font-family: var(--font-cinzel), Georgia, serif;
+  font-weight: 700;
 }
 
 /* Theme Adaptive Helper Classes */
@@ -64,14 +67,17 @@ body {
 
 .theme-text-title {
   color: var(--text-title);
+  font-weight: 800;
 }
 
 .theme-text {
   color: var(--text-main);
+  font-weight: 600;
 }
 
 .theme-text-muted {
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .theme-border {
@@ -92,7 +98,7 @@ body {
 }
 
 html.light .velada-gold-text {
-  background: linear-gradient(180deg, #997A15 0%, #735B0E 50%, #4D3C08 100%);
+  background: linear-gradient(180deg, #B8860B 0%, #8B6508 50%, #5C4305 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,9 +108,9 @@ html.light .velada-gold-text {
 .velada-nav-link {
   font-family: var(--font-cinzel), Georgia, serif;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   transition: all 0.3s ease;
   position: relative;
@@ -136,7 +142,7 @@ html.light .velada-gold-text {
   position: relative;
   background-color: var(--bg-card);
   border: 1px solid var(--border-gold);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px var(--card-shadow);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -145,7 +151,7 @@ html.light .velada-gold-text {
 .infolavelada-card:hover {
   border-color: var(--gold-accent);
   transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(153, 122, 21, 0.25);
+  box-shadow: 0 15px 35px rgba(184, 134, 11, 0.25);
 }
 
 /* Golden Bracket Accent Corners (┌ ┐ └ ┘) */
@@ -158,7 +164,7 @@ html.light .velada-gold-text {
   border-color: var(--gold-accent);
   pointer-events-none: none;
   z-index: 20;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
@@ -197,7 +203,7 @@ html.light .velada-gold-text {
   border-right: 2px solid var(--gold-accent);
 }
 
-/* Douglas Padilla Style 3D Double-Layer Compact Squircle Cards (Image exact match) */
+/* Douglas Padilla Style 3D Double-Layer Compact Squircle Cards */
 .squircle-card-wrapper {
   position: relative;
   display: inline-flex;

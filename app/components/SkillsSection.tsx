@@ -113,7 +113,7 @@ export default function SkillsSection() {
           </p>
         </div>
 
-        {/* Category Switcher Tabs (Removed "Todos") */}
+        {/* Category Switcher Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10 pb-3 border-b theme-border animate-stack delay-200">
           {categories.map((cat) => (
             <button
@@ -131,7 +131,7 @@ export default function SkillsSection() {
           ))}
         </div>
 
-        {/* Pure Icon 3D Squircle Grid */}
+        {/* Pure Icon 3D Squircle Grid (High Contrast Tooltip in Light/Dark Mode) */}
         <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
           {filtered.map((item, idx) => (
             <div
@@ -147,8 +147,8 @@ export default function SkillsSection() {
                 </div>
               </div>
 
-              {/* Hover Tooltip */}
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-[#050811] theme-text-title text-[10px] font-mono font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border theme-border-gold shadow-lg z-30">
+              {/* High Contrast Tooltip Popup (Fixed for Light & Dark mode) */}
+              <span className="absolute -bottom-9 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-slate-900 text-[#F3E5AB] text-[11px] font-mono font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-[#D4AF37]/60 shadow-2xl z-40">
                 {item.name}
               </span>
             </div>
