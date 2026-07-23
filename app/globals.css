@@ -1,26 +1,317 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-main: #050811;
+  --bg-card: #0A0F1F;
+  --bg-card-hover: #10172E;
+  --bg-secondary: #080C18;
+  --text-title: #F4E6C3;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --gold-accent: #D4AF37;
+  --gold-light: #F3E5AB;
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --card-shadow: rgba(0, 0, 0, 0.7);
+  --grid-line: rgba(212, 175, 55, 0.04);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.light {
+  --bg-main: #F4F6F8;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --text-title: #0F172A;
+  --text-main: #1E293B;
+  --text-muted: #475569;
+  --gold-accent: #997A15;
+  --gold-light: #B8860B;
+  --border-gold: rgba(153, 122, 21, 0.35);
+  --border-card: rgba(15, 23, 42, 0.12);
+  --card-shadow: rgba(15, 23, 42, 0.08);
+  --grid-line: rgba(153, 122, 21, 0.06);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* Font Classes */
+.font-cinzel {
+  font-family: var(--font-cinzel), Georgia, serif;
+}
+
+/* Theme Adaptive Helper Classes */
+.theme-bg {
+  background-color: var(--bg-main);
+}
+
+.theme-bg-card {
+  background-color: var(--bg-card);
+}
+
+.theme-bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.theme-text-title {
+  color: var(--text-title);
+}
+
+.theme-text {
+  color: var(--text-main);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+.theme-border {
+  border-color: var(--border-card);
+}
+
+.theme-border-gold {
+  border-color: var(--border-gold);
+}
+
+/* La Velada Gold Gradient Text */
+.velada-gold-text {
+  color: var(--text-title);
+  background: linear-gradient(180deg, #FFF5D6 0%, #E5D2A0 50%, #B89647 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.light .velada-gold-text {
+  background: linear-gradient(180deg, #997A15 0%, #735B0E 50%, #4D3C08 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* La Velada Navigation Link */
+.velada-nav-link {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.4rem 0;
+}
+
+.velada-nav-link:hover, .velada-nav-link.active {
+  color: var(--text-title);
+}
+
+.velada-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  transition: width 0.3s ease;
+}
+
+.velada-nav-link:hover::after, .velada-nav-link.active::after {
+  width: 100%;
+}
+
+/* Infolavelada Combat Card Styling */
+.infolavelada-card {
+  position: relative;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--card-shadow);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.infolavelada-card:hover {
+  border-color: var(--gold-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(153, 122, 21, 0.25);
+}
+
+/* Golden Bracket Accent Corners (┌ ┐ └ ┘) */
+.infolavelada-card::before,
+.infolavelada-card::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--gold-accent);
+  pointer-events-none: none;
+  z-index: 20;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.infolavelada-card:hover::before,
+.infolavelada-card:hover::after {
+  opacity: 1;
+}
+
+/* Top-Left & Top-Right Bracket */
+.corner-brackets-top::before {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid var(--gold-accent);
+  border-left: 2px solid var(--gold-accent);
+}
+
+.corner-brackets-top::after {
+  top: 8px;
+  right: 8px;
+  border-top: 2px solid var(--gold-accent);
+  border-right: 2px solid var(--gold-accent);
+}
+
+/* Bottom-Left & Bottom-Right Bracket */
+.corner-brackets-bottom::before {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 2px solid var(--gold-accent);
+  border-left: 2px solid var(--gold-accent);
+}
+
+.corner-brackets-bottom::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid var(--gold-accent);
+  border-right: 2px solid var(--gold-accent);
+}
+
+/* Douglas Padilla Style 3D Double-Layer Compact Squircle Cards (Image exact match) */
+.squircle-card-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.squircle-card-back {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.squircle-card-front {
+  position: relative;
+  z-index: 2;
+  border-radius: 16px;
+  border: 1px solid var(--border-gold);
+  background-color: var(--bg-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px var(--card-shadow);
+}
+
+.squircle-card-wrapper:hover .squircle-card-front {
+  transform: translate(-3px, -3px);
+  border-color: var(--gold-accent);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+}
+
+.squircle-card-wrapper:hover .squircle-card-back {
+  transform: translate(2px, 2px);
+  opacity: 0.9;
+}
+
+/* Douglas Padilla Style Animations & Somber Stack Loading */
+@keyframes stackReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.96);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-stack {
+  animation: stackReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+}
+
+.animate-ambient {
+  animation: ambientPulse 8s ease-in-out infinite;
+}
+
+/* Card Radial Spotlight Glow on Hover */
+.card-spotlight {
+  position: relative;
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.15), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border: 1px solid var(--gold-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
 }
